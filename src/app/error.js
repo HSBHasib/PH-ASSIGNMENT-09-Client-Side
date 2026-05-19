@@ -7,7 +7,7 @@ import { FiAlertTriangle } from "react-icons/fi";
 const ErrorPage = ({ reset }) => {
 
   return (
-    <main className="flex-1 bg-gray-50 flex flex-col items-center justify-center px-4 text-center">
+    <main className="h-[70vh] bg-gray-50 flex flex-col items-center justify-center px-4 text-center">
       
       <div className="max-w-md space-y-3">
         <div className=" p-5 bg-red-100 inline-block rounded-full text-rose-500 animate-bounce">

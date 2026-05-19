@@ -4,7 +4,7 @@ import { HiOutlineExclamationCircle } from 'react-icons/hi'
 
 const NotFoundPage = () => {
   return (
-    <div className="flex-1 bg-gray-50 flex flex-col items-center justify-center px-4 text-center">
+    <div className="h-[70vh] bg-gray-50 flex flex-col items-center justify-center px-4 text-center">
       
       <div className="max-w-md space-y-3">
         <div className="flex justify-center text-[#1e73be]">
