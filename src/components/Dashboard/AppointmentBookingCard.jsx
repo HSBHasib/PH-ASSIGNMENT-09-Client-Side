@@ -6,6 +6,8 @@ import {
 } from "react-icons/hi";
 import React from "react";
 import { Button } from "@heroui/react";
+import DeleteAlertDialog from "./DeleteAlertDialog";
+import UpdateAppointmentData from "./UpdateAppointmentData";
 
 const AppointmentBookingCard = ({ appointment }) => {
   const {
@@ -59,10 +61,10 @@ const AppointmentBookingCard = ({ appointment }) => {
       {/* Update and Delete Buttons */}
       <div className="flex items-center gap-3 mt-6">
         <div>
-          <Button variant="outline">Update</Button>
+          <UpdateAppointmentData appointment={appointment} />
         </div>
         <div>
-          <Button variant="outline">Delete</Button>
+          <DeleteAlertDialog _id={_id} doctorName={doctorName} />
         </div>
       </div>
     </div>

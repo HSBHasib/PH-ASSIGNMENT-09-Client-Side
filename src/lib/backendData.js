@@ -19,3 +19,23 @@ export const appointmentsFunc = async (bookingAppointment) => {
     toast.error("Something went wrong!");
   }
 };
+
+
+
+// Cencel Appointment
+export const CencelAppointmentFunc = async (appointmentId) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/appointments/${appointmentId}`,
+    {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+    },
+  );
+  const data = await res.json();
+  if (data?.deletedCount) {
+    toast.success(`Appointment Cencel Successful!`);
+    redirect("/dashboard");
+  }
+};
