@@ -1,6 +1,6 @@
-// Get all doctors data
-export const getAllDoctorData = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/doctors`);
+// Get all doctors data and filter doctor data by search
+export const getAllDoctorData = async (search = '') => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/doctors?search=${search}`);
     const data = await res.json() || [];
     return data;
 }
