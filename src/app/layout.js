@@ -1,8 +1,8 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/HomePage/Navbar/Navbar";
 
 export const metadata = {
-  title: "DocAppointment",
+  title: "Doctor Appointment",
   description: "This is a best and smart doctor consultation website side in the bangladesh",
 };
 
@@ -12,7 +12,10 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }

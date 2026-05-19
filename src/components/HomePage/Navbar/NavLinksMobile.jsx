@@ -1,10 +1,20 @@
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React from 'react'
 
-const NavLinksMobile = () => {
+const NavLinksMobile = ({link}) => {
+    const pathName = usePathname();
   return (
-    <div>
-      This is for mobile device 
-    </div>
+    <Link
+      href={link.href}
+      className={`px-4 py-2 flex flex-col gap-3 rounded-lg text-sm font-medium transition-all duration-200 ${
+        pathName === link.href
+          ? "bg-[#f0f7ff] text-[#1e73be]"
+          : "text-slate-500 hover:text-slate-900 hover:bg-slate-50"
+      }`}
+    >
+      {link.name}
+    </Link>
   )
 }
 
