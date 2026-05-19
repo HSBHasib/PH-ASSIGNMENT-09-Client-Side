@@ -6,8 +6,25 @@ import { HiMenu, HiX } from "react-icons/hi";
 import Image from "next/image";
 import NavLinksDesktop from "./NavLinksDesktop";
 import NavLinksMobile from "./NavLinksMobile";
+import { authClient } from "@/lib/auth-client";
+import { Avatar } from "@heroui/react";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+  // Patient Details
+  const { data: session } = authClient.useSession();
+  const patient = session?.user;
+
+  const handleLogOut = async () => {
+    await authClient.signOut();
+
+    // Toster
+    toast.success("LogOut Successful");
+
+    // Refresh the page
+    router.refresh();
+  };
+
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
@@ -39,20 +56,43 @@ const Navbar = () => {
             ))}
           </div>
 
-          <div className="hidden md:flex items-center gap-2">
-            <Link
-              href="/login"
-              className="text-sm font-semibold text-slate-700 px-5 py-2.5 transition-all hover:text-slate-900 rounded-lg hover:bg-[#f0f7ff]"
-            >
-              Login
-            </Link>
-            <Link
-              href="/register"
-              className="bg-[#1e73be] hover:bg-[#165a94] text-white text-sm font-semibold px-5 py-2.5 rounded-lg shadow-sm transition-all duration-200"
-            >
-              Register
-            </Link>
-          </div>
+          {patient ? (
+            <div className="hidden md:flex items-center gap-3">
+              <Link href="/dashboard?tab=profile">
+                <Avatar className="hover:scale-105 transition-all duration-300">
+                  <Avatar.Image
+                    className="object-cover"
+                    alt={`${patient?.name}-ProfileImg`}
+                    src={patient?.image}
+                  />
+                  <Avatar.Fallback>
+                    {patient?.name.charAt(0).toUpperCase()}
+                  </Avatar.Fallback>
+                </Avatar>
+              </Link>
+              <button
+                onClick={() => handleLogOut()}
+                className="bg-[#1e73be] hover:bg-[#165a94] text-white text-sm font-semibold px-5 py-2.5 rounded-lg shadow-sm transition-all duration-200"
+              >
+                LogOut
+              </button>
+            </div>
+          ) : (
+            <div className="hidden md:flex items-center gap-2">
+              <Link
+                href="/login"
+                className="text-sm font-semibold text-slate-700 px-5 py-2.5 transition-all hover:text-slate-900 rounded-lg hover:bg-[#f0f7ff]"
+              >
+                Login
+              </Link>
+              <Link
+                href="/register"
+                className="bg-[#1e73be] hover:bg-[#165a94] text-white text-sm font-semibold px-5 py-2.5 rounded-lg shadow-sm transition-all duration-200"
+              >
+                Register
+              </Link>
+            </div>
+          )}
 
           {/* Mobile Device Menu Icon */}
           <div className="flex items-center md:hidden gap-3">
@@ -94,25 +134,44 @@ const Navbar = () => {
           </div>
         </div>
 
-        <div className="space-y-0 pt-6 border-t border-slate-200/30 flex items-center gap-3">
-          <Link
-            href="/login"
-            onClick={() => setIsOpen(false)}
-            className="flex-1 active:scale-95 bg-slate-100 hover:bg-slate-200 text-center font-bold text-slate-700 py-3 rounded-xl transition-all text-sm border border-slate-200/60"
-          >
-            Login
-          </Link>
-          <Link
-            href="/register"
-            onClick={() => setIsOpen(false)}
-            className="flex-1 active:scale-95 text-center font-bold bg-[#1e73be] hover:bg-[#165a94] text-white py-3 rounded-xl shadow-lg shadow-blue-500/10 transition-all duration-200 text-sm"
-          >
-            Register
-          </Link>
-        </div>
+        {patient ? (
+          <div className="space-y-0 pt-6 border-t border-slate-200/30 flex flex-col items-center gap-3">
+            <Link
+              href="/dashboard?tab=profile"
+              onClick={() => setIsOpen(false)}
+              className="w-full active:scale-95 bg-slate-100 hover:bg-slate-200 text-center font-bold text-slate-700 py-3 rounded-xl transition-all text-sm border border-slate-200/60"
+            >
+              Profile
+            </Link>
+            <button
+              onClick={() => handleLogOut()}
+              className="w-full active:scale-95 text-center font-bold bg-[#1e73be] hover:bg-[#165a94] text-white py-3 rounded-xl shadow-lg shadow-blue-500/10 transition-all duration-200 text-sm"
+            >
+              LogOut
+            </button>
+          </div>
+        ) : (
+          <div className="space-y-0 pt-6 border-t border-slate-200/30 flex items-center gap-3">
+            <Link
+              href="/login"
+              onClick={() => setIsOpen(false)}
+              className="flex-1 active:scale-95 bg-slate-100 hover:bg-slate-200 text-center font-bold text-slate-700 py-3 rounded-xl transition-all text-sm border border-slate-200/60"
+            >
+              Login
+            </Link>
+            <Link
+              href="/register"
+              onClick={() => setIsOpen(false)}
+              className="flex-1 active:scale-95 text-center font-bold bg-[#1e73be] hover:bg-[#165a94] text-white py-3 rounded-xl shadow-lg shadow-blue-500/10 transition-all duration-200 text-sm"
+            >
+              Register
+            </Link>
+          </div>
+        )}
       </div>
     </nav>
   );
 };
 
 export default Navbar;
+
