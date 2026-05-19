@@ -104,7 +104,112 @@ const DoctorDetails = async ({ params }) => {
 
           {/* Doctor Detials - (Right side) */}
           <div className="lg:col-span-2 grid grid-cols-2 gap-5">
-            Right Side Details
+            {/* Professional Biography Card */}
+            <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm space-y-4 relative">
+              <h3 className="text-xl font-semibold text-[#191C20] flex items-center gap-2">
+                <HiOutlineDocumentText size={22} className="text-[#1e73be]" />{" "}
+                Professional Biography
+              </h3>
+              <p className="text-xs sm:text- leading-relaxed text-[#404750] font-medium whitespace-pre-line tracking-wide">
+                {description}
+              </p>
+
+              <span
+                style={{ backgroundColor: "rgba(0, 168, 150, 0.1)" }}
+                className="text-xs font-semibold text-[#00a896] px-3 py-1 rounded-full"
+              >
+                {specialty} Specialist
+              </span>
+
+              <div className="absolute top-3 right-3">
+                <p
+                  style={{ backgroundColor: "rgba(30, 115, 190, 0.1)" }}
+                  className="text-[10px] font-semibold text-[#1e73be] animate-bounce px-3 py-1 rounded-full"
+                >
+                  Consultation Fee: {fee}TK
+                </p>
+              </div>
+            </div>
+
+            <div>
+              {/* Location Card */}
+              <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm space-y-4">
+                <h3 className="text-xl font-semibold text-[#191C20] flex items-center gap-2">
+                  <HiOutlineLocationMarker
+                    size={22}
+                    className="text-[#1e73be]"
+                  />{" "}
+                  Practice Location
+                </h3>
+
+                <div className="flex flex-col md:flex-row gap-6 justify-between items-stretch">
+                  <div className="flex flex-col justify-center space-y-2 flex-1 max-w-sm">
+                    <div className="space-y-1">
+                      <h4 className="text-sm font-bold text-[#191C20]">
+                        {hospital}
+                      </h4>
+                      <p className="text-xs text-[#404750] font-semibold leading-relaxed">
+                        <span className="font-bold">Location:</span> Shahbagh,{" "}
+                        {location}, Bangladesh
+                      </p>
+                    </div>
+
+                    <div className="space-y-2 pt-1 text-xs text-[#404750] font-medium">
+                      <div className="flex items-center gap-1">
+                        <HiOutlinePhone className="w-4 h-4 text-[#1e73be]" />
+                        <span>+8801253767844</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <HiOutlineMail className="w-4 h-4 text-[#1e73be]" />
+                        <span className="hover:underline cursor-pointer">
+                          {name.toLowerCase()}@gmail.com
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Availability Card (Morning/Evening Session) */}
+            <div className="bg-white col-span-2 rounded-2xl border border-slate-100 p-6 sm:p-8 shadow-sm space-y-4">
+              <h3 className="text-xl font-semibold text-[#191C20] flex items-center gap-2">
+                <HiOutlineClock className="w-5 h-5 text-[#1e73be]" />{" "}
+                Availability
+              </h3>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Morning Session Box */}
+                <div className="flex items-center gap-4 p-4 bg-slate-50 border border-slate-100/70 rounded-xl">
+                  <div className="p-3 bg-blue-50 text-blue-500 rounded-xl shrink-0">
+                    <HiOutlineSun className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-bold text-[#191C20]">
+                      Morning Session
+                    </h4>
+                    <p className="text-sm text-[#404750] font-normal mt-0.5">
+                      {availability?.[0] || "08:30 AM - 12:30 PM"}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Evening Session Box */}
+                <div className="flex items-center gap-4 p-4 bg-slate-50 border border-slate-100/70 rounded-xl">
+                  <div className="p-3 bg-indigo-50 text-indigo-500 rounded-xl shrink-0">
+                    <HiOutlineMoon className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-bold text-[#191C20]">
+                      Evening Session
+                    </h4>
+                    <p className="text-sm text-[#404750] font-normal mt-0.5">
+                      {availability?.[1] || "04:00 PM - 07:00 PM"}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
