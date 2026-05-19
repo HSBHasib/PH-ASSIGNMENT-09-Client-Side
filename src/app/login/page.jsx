@@ -6,22 +6,47 @@ import Image from "next/image";
 import { FiMail, FiLock, FiEye, FiEyeOff } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
-
+import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+
+  // Google singnUp
+  const googleSignUp = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+  };
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
-   const formHandaler = async (data) => {
-      const { email, password } = data;
+  const formHandaler = async (data) => {
+    const { email, password } = data;
+    const { data: dets, error } = await authClient.signIn.email({
+      email,
+      password,
+      rememberMe: true,
+      callbackURL: "/",
+    });
 
-      console.log('login form data', data);
+    // Error
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
 
-    };
+    // Success
+    if (dets) {
+      toast.success("Login Successful");
+      reset();
+    }
+  };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2  bg-slate-50">
@@ -79,14 +104,14 @@ const LoginPage = () => {
                   type="email"
                   placeholder="Enter Your Email"
                   className="block w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#1e73be] focus:bg-white transition-all text-slate-900"
-                  {...register("email", {required: true})}
+                  {...register("email", { required: true })}
                 />
               </div>
               {errors.email && (
-              <p className="text-red-500 px-2 text-xs pt-0.5">
-                Enter a valid email address
-              </p>
-            )}
+                <p className="text-red-500 px-2 text-xs pt-0.5">
+                  Enter a valid email address
+                </p>
+              )}
             </div>
 
             {/* Password */}
@@ -102,7 +127,7 @@ const LoginPage = () => {
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
                   className="block w-full pl-11 pr-12 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#1e73be] focus:bg-white transition-all text-slate-900"
-                  {...register("password", {required: true})}
+                  {...register("password", { required: true })}
                 />
                 <button
                   type="button"
@@ -115,13 +140,15 @@ const LoginPage = () => {
                     <FiEye className="h-4 w-4" />
                   )}
                 </button>
-                <p className="text-xs text-[#404750] absolute right-0 -bottom-9 py-3">Forget Password?</p>
+                <p className="text-xs text-[#404750] absolute right-0 -bottom-9 py-3">
+                  Forget Password?
+                </p>
               </div>
               {errors.password && (
-              <p className="text-red-500 px-2 text-xs pt-0.5">
-                Enter a valid password
-              </p>
-            )}
+                <p className="text-red-500 px-2 text-xs pt-0.5">
+                  Enter a valid password
+                </p>
+              )}
             </div>
 
             {/* Login Button */}
@@ -148,6 +175,7 @@ const LoginPage = () => {
           {/* Social Signup - (Google)  */}
           <div className="mt-6">
             <button
+              onClick={() => googleSignUp()}
               type="button"
               className="w-full flex items-center justify-center gap-3 bg-slate-50 hover:bg-slate-100 text-slate-700 font-semibold py-3 px-4 border border-slate-200 rounded-xl transition-all duration-150 text-sm"
             >

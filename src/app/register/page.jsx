@@ -12,21 +12,54 @@ import {
   FiEyeOff,
 } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
+import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
-
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 const RegisterPage = () => {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+
+  // Google singnUp
+  const googleSignUp = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+  };
+
   // react hook form
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
   const formHandaler = async (data) => {
     const { name, image, email, password } = data;
-    console.log('register data - ', data);
+    const { data: dets, error } = await authClient.signUp.email({
+      name,
+      image,
+      email,
+      password,
+    });
+
+    // Error
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
+
+    // Success
+    if (dets) {
+      toast.success("Register Successful");
+      reset();
+
+      setTimeout(() => {
+        router.push("/login");
+      }, 600);
+    }
   };
 
   return (
@@ -103,7 +136,7 @@ const RegisterPage = () => {
                 Photo URL
               </label>
               <div className="relative rounded-xl">
-                <div className="absolute top-3 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
                   <FiLink className="h-5 w-5" />
                 </div>
                 <input
@@ -209,6 +242,7 @@ const RegisterPage = () => {
           {/* Social Signup - (Google)  */}
           <div className="mt-6">
             <button
+              onClick={() => googleSignUp()}
               type="button"
               className="w-full flex items-center justify-center gap-3 bg-slate-50 hover:bg-slate-100 text-slate-700 font-semibold py-3 px-4 border border-slate-200 rounded-xl transition-all duration-150 text-sm"
             >
@@ -233,4 +267,3 @@ const RegisterPage = () => {
 };
 
 export default RegisterPage;
-
