@@ -26,13 +26,15 @@ const DoctorCard = ({ doctor }) => {
       >
         <div>
           {/* Image and Rating div */}
-          <div className="relative aspect-4/3 w-full bg-gray-50 overflow-hidden">
+          <div className="relative aspect-4/3 bg-gray-50 overflow-hidden">
+          
             <Image
               src={image}
               alt={name}
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
-              sizes="(max-w-768px) 100vw, 33vw"
+              width={700}
+              height={700}
+              className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+              sizes="(max-w-768px), 100vw, 33vw"
             />
             <div className="absolute top-3 right-3 bg-white/50 backdrop-blur-xs px-2.5 py-1.5 rounded-lg flex items-center gap-1 shadow-sm">
               <HiStar className="w-4 h-4 text-amber-400" />
