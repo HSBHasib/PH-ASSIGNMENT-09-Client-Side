@@ -1,7 +1,9 @@
+import CareSection from "@/components/HomePage/CareSection";
+
 export default function Home() {
   return (
     <div>
-      This is Home Page
+      <CareSection />
     </div>
   );
 }
