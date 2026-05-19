@@ -1,6 +1,7 @@
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
 import Navbar from "@/components/HomePage/Navbar/Navbar";
+import Footer from "@/components/HomePage/Footer";
 
 export const metadata = {
   title: "Doctor Appointment",
@@ -16,6 +17,7 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col">
         <Navbar />
         {children}
+        <Footer />
 
         <Toaster />
       </body>

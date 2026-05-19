@@ -32,7 +32,7 @@ const PatientReview = async () => {
           <div className="flex items-center">
             {review1.map((review) => (
               <div
-                key={review.id}
+                key={review._id}
                 className="w-[400px] mr-5 bg-white rounded-2xl border border-slate-100 p-6 flex flex-col justify-between transition-all duration-300"
               >
                 <div className="space-y-4">
@@ -67,7 +67,7 @@ const PatientReview = async () => {
           <div className="flex items-center">
             {review2.map((review) => (
               <div
-                key={review.id}
+                key={review._id}
                 className="w-[400px] mr-5 bg-white rounded-2xl border border-slate-100 p-6 flex flex-col justify-between transition-all duration-300"
               >
                 <div className="space-y-4">
