@@ -1,37 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Project Name: DocAppoint (Doctor Appointment Management System)
 
-## Getting Started
+### Purpose:
+• This project is built to create a modern Doctor Appointment Booking System named 'DocAppoint'. 
 
-First, run the development server:
+• Users can easily explore verified medical specialists from various fields
+and view individuals doctor details, including their availability, 
+consultation fees, and hospital locations, etc.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+• This platform helps users browse, search, and book doctor appointments online from anywhere, 
+instead of wasting time visiting hospitals just to get an appointment.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+-------------------------------------------------
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Live URL:
+https://docappointment-client.vercel.app/
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+-------------------------------------------------
 
-## Learn More
+### NPM Packages Used:
+• Next.js
+• Swiper.js
+• BetterAuth
+• Tailwind CSS
+• Lucide React
+• React Icon
+• React Form Hook
+• React Hot Toast
+• MongoDB (Backend Database)
 
-To learn more about Next.js, take a look at the following resources:
+-------------------------------------------------
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Features About My Project:
+1. Search Functionality – 
+Users can search for their preferred doctors 
+on the All Appointments page using the doctors name or doctor specialty.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Individual Doctor Details Page – 
+A clean two-column dashboard layout displaying doctor information 
+including specialty, experience, rating, location, and available time slots, etc.
 
-## Deploy on Vercel
+3. Doctor Appointment Booking System with Modals Form – 
+Authenticated users can click "Book Appointment" to open a form modal 
+and submit patient details straight to MongoDB with instant success toast notifications.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. Secure User Session & Dynamic Profile Management – Used Better-Auth to auth, 
+keeping users logged in even after refreshing the page. 
+Users can update their name and profile picture from the dashboard my-profile tab. 
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# PH-ASSIGNMENT-09-Client-Side
+5. Full Dynamic Appointment Card in Dashboard – 
+A private dashboard area for logged In users to manage their bookings, 
+allowing them to update appointment information - (user cannot change doctor data, they can read only) 
+or cancel appointments with real time UI updates.
+
+
