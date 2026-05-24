@@ -62,7 +62,7 @@ DocAppoint is a modern, responsive web application built with the Next.js App Ro
 
 ```bash
 # Clone the repository
-git clone [  ]
+git clone [ https://github.com/HSBHasib/DocAppoint-A9.git ]
 
 # Go into the project folder
 cd DocAppoint-A9
