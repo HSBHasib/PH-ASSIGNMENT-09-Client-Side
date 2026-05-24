@@ -67,9 +67,10 @@ git clone [ https://github.com/HSBHasib/DocAppoint-A9.git ]
 # Go into the project folder
 cd DocAppoint-A9
 
-# Setup your Environment Variables (.env)
-# BETTER_AUTH_SECRET=your_secret
-# MONGODB_URI=your_mongodb_connection_string
+# Important
+Setup your Environment Variables (.env)
+BETTER_AUTH_SECRET=your_secret
+MONGODB_URI=your_mongodb_connection_string
 
 # Install dependencies
 npm install
